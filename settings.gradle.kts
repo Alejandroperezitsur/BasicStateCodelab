@@ -1,14 +1,10 @@
+// File: settings.gradle.kts
+
 pluginManagement {
     repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
+        google()
         mavenCentral()
-        gradlePluginPortal()
+        gradlePluginPortal() // Corregido
     }
 }
 dependencyResolutionManagement {
@@ -19,5 +15,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "BasicStateCodelab"
+rootProject.name = "BasicStateCodelab" // O el nombre de tu proyecto
 include(":app")
+

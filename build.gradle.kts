@@ -1,6 +1,9 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+// File: build.gradle.kts (Project level)
+
+// Declara los plugins comunes a todos los módulos del proyecto
 plugins {
-    alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.kotlin.android) apply false
-    alias(libs.plugins.kotlin.compose) apply false
+    // Aplica el plugin de aplicación de Android (necesario para construir apps)
+    id("com.android.application") version "8.13.0" apply false // VERSIÓN AJUSTADA
+    // Aplica el plugin de Kotlin para Android
+    id("org.jetbrains.kotlin.android") version "1.9.0" apply false // VERSIÓN AJUSTADA
 }

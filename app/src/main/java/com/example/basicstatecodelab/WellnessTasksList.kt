@@ -1,17 +1,16 @@
 // File: WellnessTasksList.kt
-package com.example.basicstatecodelab // Asegúrate que este sea tu package name
+package com.example.basicstatecodelab
 
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items // Asegúrate que sea la importación correcta
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-// La función getWellnessTasks() ya no está aquí, se movió a WellnessScreen.kt
-// Y la lista ya no se inicializa con remember aquí.
 
 @Composable
 fun WellnessTasksList(
-    list: List<WellnessTask>, // La lista ahora se pasa como parámetro
-    onCloseTask: (WellnessTask) -> Unit, // Callback para cuando se cierra una tarea
+    list: List<WellnessTask>,
+    onCheckedTask: (WellnessTask, Boolean) -> Unit, // Nuevo callback para el estado 'checked'
+    onCloseTask: (WellnessTask) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -19,13 +18,14 @@ fun WellnessTasksList(
     ) {
         items(
             items = list,
-            key = { task -> task.id } // Usar el id de la tarea como clave
+            key = { task -> task.id }
         ) { task ->
             WellnessTaskItem(
                 taskName = task.label,
-                onClose = { onCloseTask(task) } // Llama al callback con la tarea específica
+                checked = task.checked, // Pasamos el estado 'checked' de la tarea
+                onCheckedChange = { checkedValue -> onCheckedTask(task, checkedValue) }, // Callback para el cambio de 'checked'
+                onClose = { onCloseTask(task) }
             )
         }
     }
 }
-

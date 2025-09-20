@@ -1,5 +1,5 @@
 // File: WellnessTaskItem.kt
-package com.example.basicstatecodelab // Asegúrate que este sea tu package name
+package com.example.basicstatecodelab
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -10,23 +10,18 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
-/**
- * Muestra un item de la lista de tareas de bienestar. (Versión SIN ESTADO)
- */
+// Solo queda la versión sin estado, ya que el estado 'checked'
+// ahora se maneja en el ViewModel y se pasa a través de WellnessTask.
 @Composable
 fun WellnessTaskItem(
     taskName: String,
-    checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit,
-    onClose: () -> Unit,
+    checked: Boolean, // El estado 'checked' viene del WellnessTask
+    onCheckedChange: (Boolean) -> Unit, // Callback para notificar el cambio de 'checked'
+    onClose: () -> Unit, // Callback para notificar el evento de cierre
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -48,25 +43,3 @@ fun WellnessTaskItem(
         }
     }
 }
-
-/**
- * Muestra un item de la lista de tareas de bienestar. (Versión CON ESTADO)
- * El callback onClose ahora es un parámetro requerido y se pasa a la versión sin estado.
- */
-@Composable
-fun WellnessTaskItem(
-    taskName: String,
-    onClose: () -> Unit, // Parámetro onClose añadido/requerido
-    modifier: Modifier = Modifier
-) {
-    var checkedState by rememberSaveable { mutableStateOf(false) }
-
-    WellnessTaskItem(
-        taskName = taskName,
-        checked = checkedState,
-        onCheckedChange = { newValue -> checkedState = newValue },
-        onClose = onClose, // Pasa el callback onClose
-        modifier = modifier
-    )
-}
-
