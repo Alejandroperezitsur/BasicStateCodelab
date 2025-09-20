@@ -1,17 +1,18 @@
 package com.example.basicstatecodelab // Asegúrate que este sea tu package name
 
+import WaterCounter
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 // import androidx.activity.enableEdgeToEdge // Puedes descomentar si lo usas
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme // Corregido: Importar MaterialTheme
-import androidx.compose.material3.Surface         // Corregido: Importar Surface
-// import androidx.compose.material3.Text // Ya no se usa directamente aquí si solo muestras WaterCounter
-// import androidx.compose.runtime.Composable // Ya no se usa directamente aquí si solo muestras WaterCounter
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-// import androidx.compose.ui.tooling.preview.Preview // Puedes mantenerlo si tienes otras previews
 import com.example.basicstatecodelab.ui.theme.BasicStateCodelabTheme
+// Si WaterCounter.kt está en el mismo paquete, no necesitas esta importación.
+// Si está en un subpaquete o paquete diferente, asegúrate de que la importación sea correcta:
+// import com.example.basicstatecodelab.WaterCounter // Descomenta y ajusta si es necesario
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,29 +25,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    // Llamamos a la función Composable WaterCounter.
+                    // Esta ahora es la versión interactiva que definimos en WaterCounter.kt
                     WaterCounter()
                 }
             }
         }
     }
 }
-
-// Puedes mantener o eliminar la función Greeting y GreetingPreview si ya no las necesitas
-// o si son parte de otro ejercicio.
-/*
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    BasicStateCodelabTheme {
-        Greeting("Android")
-    }
-}
-*/
