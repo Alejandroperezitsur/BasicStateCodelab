@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    WaterCounter() // Aquí llamamos a nuestro nuevo Composable
+                    WaterCounter()
                 }
             }
         }
