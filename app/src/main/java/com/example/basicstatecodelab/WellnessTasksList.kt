@@ -2,36 +2,30 @@
 package com.example.basicstatecodelab // Asegúrate que este sea tu package name
 
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.items // Asegúrate que sea la importación correcta
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-
-// Esta función debe estar en este archivo o importada si está en WellnessTask.kt
-// data class WellnessTask(val id: Int, val label: String) // Ya definida en WellnessTask.kt
-
-fun getWellnessTasks() = List(30) { i -> WellnessTask(i, "Task # $i") }
+// La función getWellnessTasks() ya no está aquí, se movió a WellnessScreen.kt
+// Y la lista ya no se inicializa con remember aquí.
 
 @Composable
 fun WellnessTasksList(
-    modifier: Modifier = Modifier,
-    list: List<WellnessTask> = remember { getWellnessTasks() },
-    // El onCloseTask será necesario cuando implementemos la eliminación
-    onCloseTask: (WellnessTask) -> Unit // Añadimos este callback para la futura eliminación
+    list: List<WellnessTask>, // La lista ahora se pasa como parámetro
+    onCloseTask: (WellnessTask) -> Unit, // Callback para cuando se cierra una tarea
+    modifier: Modifier = Modifier
 ) {
     LazyColumn(
         modifier = modifier
     ) {
         items(
             items = list,
-            key = { task -> task.id } // Es buena práctica añadir una key
+            key = { task -> task.id } // Usar el id de la tarea como clave
         ) { task ->
-            // Llamamos a la versión de WellnessTaskItem que maneja su propio estado 'checked'
-            // y que acepta un callback onClose
             WellnessTaskItem(
                 taskName = task.label,
-                onClose = { onCloseTask(task) } // Pasamos el callback con la tarea específica
+                onClose = { onCloseTask(task) } // Llama al callback con la tarea específica
             )
         }
     }
 }
+
