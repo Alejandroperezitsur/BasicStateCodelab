@@ -24,7 +24,7 @@ fun WaterCounter(modifier: Modifier = Modifier) {
             text = "You've had $count glasses."
         )
         Button(
-            onClick = { count++ }, // Incrementa el contador cuando se presiona el botón
+            onClick = { count++ }, // Incrementa el contador cuando se presiona el boton
             modifier = Modifier.padding(top = 8.dp) // Añade un poco de espacio encima del botón
         ) {
             Text("Add one")
