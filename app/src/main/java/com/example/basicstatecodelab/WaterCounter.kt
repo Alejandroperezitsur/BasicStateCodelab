@@ -22,7 +22,6 @@ fun WaterCounter(modifier: Modifier = Modifier) {
     Column(modifier = modifier.padding(16.dp)) {
         Text(
             text = "You've had $count glasses."
-            // No es necesario un padding aquí si el Column ya lo tiene
         )
         Button(
             onClick = { count++ }, // Incrementa el contador cuando se presiona el botón
